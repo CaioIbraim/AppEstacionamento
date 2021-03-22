@@ -16,8 +16,6 @@ public class Carro {
    private String cor;
    private int horaEntrada;
    private int horaSaida;
-
-   
    
    
     public Carro(String marca) {
