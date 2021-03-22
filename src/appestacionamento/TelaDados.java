@@ -24,6 +24,8 @@ public class TelaDados extends javax.swing.JFrame {
     tfMarca.setText("");
     tfPlaca.setText("");
     tfCor.setText("");
+    tfHoraEntrada.setText("");
+    tfHoraSaida.setText("");
     // Altera a fonte do Label de Título da janela
     lb1.setFont(new Font("Times Roman", Font.PLAIN, 14));
     if (operacao == 1) {
@@ -34,33 +36,38 @@ public class TelaDados extends javax.swing.JFrame {
       // Determina o título da janela para uma alteração
       lb1.setText("Alteração");
       // Cria um objeto Carro para receber os dados da consulta
-      Carro al = new Carro();
+      Carro c = new Carro();
       // Cria um objeto CarroDAO para uso dos métodos de acesso
       // ao banco para os Carros
-      CarroDAO ad = new CarroDAO();
+      CarroDAO cd = new CarroDAO();
       // Realiza a busca no Banco os dados do registro do Carro
       // através do id
-      al = ad.buscarCarro(id);
+      c = cd.buscarCarro(id);
       // Preenche as caixas de texto com os dados do Carro
-      tfMarca.setText(String.valueOf(al.getMarca()));
-      tfPlaca.setText(al.getPlaca());
-      tfCor.setText(al.getCor());
+      tfMarca.setText(String.valueOf(c.getMarca()));
+      tfPlaca.setText(c.getPlaca());
+      tfCor.setText(c.getCor());
+      tfHoraEntrada.setText(String.valueOf( c.getHoraEntrada()));
+      tfHoraSaida.setText(String.valueOf( c.getHoraEntrada()));
     }
     if (operacao == 3) {
       // Determina o título da janela para uma exclusão
       lb1.setText("Exclusão");
       // Cria um objeto Carro para receber os dados da consulta
-      Carro al = new Carro();
+      Carro c = new Carro();
       // Cria um objeto CarroDAO para uso dos métodos de acesso
       // ao banco para os Carros
-      CarroDAO ad = new CarroDAO();
+      CarroDAO cd = new CarroDAO();
       // Realiza a busca no Banco os dados do registro do Carro
       // através do id
-      al = ad.buscarCarro(id);
+      c = cd.buscarCarro(id);
       // Preenche as caixas de texto com os dados do Carro
-      tfMarca.setText(String.valueOf(al.getMarca()));
-      tfPlaca.setText(al.getPlaca());
-      tfCor.setText(al.getCor());
+      tfMarca.setText(String.valueOf(c.getMarca()));
+      tfPlaca.setText(c.getPlaca());
+      tfCor.setText(c.getCor());
+      tfHoraEntrada.setText(String.valueOf( c.getHoraEntrada()));
+      tfHoraSaida.setText(String.valueOf( c.getHoraEntrada()));
+   
     }
   }
 
@@ -81,6 +88,10 @@ public class TelaDados extends javax.swing.JFrame {
         tfPlaca = new javax.swing.JTextField();
         tfCor = new javax.swing.JTextField();
         lb1 = new javax.swing.JLabel();
+        lb5 = new javax.swing.JLabel();
+        tfHoraEntrada = new javax.swing.JTextField();
+        lb6 = new javax.swing.JLabel();
+        tfHoraSaida = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,36 +123,63 @@ public class TelaDados extends javax.swing.JFrame {
 
         lb1.setText("jLabel4");
 
+        lb5.setText("Hora Entrada:");
+
+        tfHoraEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfHoraEntradaActionPerformed(evt);
+            }
+        });
+
+        lb6.setText("Hora Saída:");
+
+        tfHoraSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfHoraSaidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btConfirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCancelar)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lb6)
+                                .addGap(30, 30, 30)
+                                .addComponent(tfHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(40, 40, 40)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lb3)
                                         .addComponent(lb2)
                                         .addComponent(lb4))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(tfMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                        .addComponent(tfPlaca)
-                                        .addComponent(tfCor)))
+                                    .addGap(18, 18, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfCor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(129, 129, 129)
+                                    .addComponent(lb1))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(btConfirmar))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(64, 64, 64)
-                            .addComponent(btCancelar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(lb1)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                                    .addContainerGap()
+                                    .addComponent(lb5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tfHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 26, Short.MAX_VALUE)))
+                .addGap(184, 184, 184))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +198,19 @@ public class TelaDados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb4)
                     .addComponent(tfCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConfirmar)
                     .addComponent(btCancelar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -174,56 +220,66 @@ public class TelaDados extends javax.swing.JFrame {
       if (operacao == 1) { // Inclusão
         // Cria um objeto Carro para receber os dados da do preenchimento 
         // da tela
-        Carro al = new Carro();
+        Carro c = new Carro();
         // Cria um objeto CarroDAO para uso dos métodos de acesso
         // ao banco para os Carros
-        CarroDAO ad = new CarroDAO();
+        CarroDAO cd = new CarroDAO();
         // Determina os valores dos atributos do objeto Carro, com os dados
         // preenchidos na tela
         // o id é gerado automaticamente pelo Access
-        al.setMarca(tfMarca.getText().toString());
-        al.setPlaca(tfPlaca.getText());
-        al.setCor(tfCor.getText());
+        c.setMarca(tfMarca.getText().toString());
+        c.setPlaca(tfPlaca.getText());
+        c.setCor(tfCor.getText());
+        c.setHoraEntrada(Integer.parseInt( tfHoraEntrada.getText()));
+        c.setHoraSaida(Integer.parseInt( tfHoraSaida.getText()));
+        
         // Verifica se a operação de inserção obteve sucesso
-        if (ad.inserir(al)) {
+        if (cd.inserir(c)) {
           String mensagem = "Carro Inserido!";
           JOptionPane.showMessageDialog(null, mensagem);
         }
       } else if (operacao == 2) { // Alteração
         // Cria um objeto Carro para receber os dados da do preenchimento 
         // da tela
-        Carro al = new Carro();
+        Carro c = new Carro();
         // Cria um objeto CarroDAO para uso dos métodos de acesso
         // ao banco para os Carros
-        CarroDAO ad = new CarroDAO();
+        CarroDAO cd = new CarroDAO();
         // Determina os valores dos atributos do objeto Carro, com os dados
         // preenchidos na tela
         // o id irá ser usado para determinar o registro a ser alterado
-        al.setId(id);
-        al.setMarca(tfMarca.getText().toString());
-        al.setPlaca(tfPlaca.getText());
-        al.setCor(tfCor.getText());
-        // Verifica se a operação de alteração obteve sucesso
-        if (ad.alterar(al)) {
+        c.setId(id);
+        c.setMarca(tfMarca.getText().toString());
+        c.setPlaca(tfPlaca.getText());
+        c.setCor(tfCor.getText());
+        c.setHoraEntrada(Integer.parseInt( tfHoraEntrada.getText()));
+        c.setHoraSaida(Integer.parseInt( tfHoraSaida.getText()));
+        
+
+// Verifica se a operação de alteração obteve sucesso
+        if (cd.alterar(c)) {
           String mensagem = "Carro Alterado!";
           JOptionPane.showMessageDialog(null, mensagem);
         }
       } else if (operacao == 3) { // Exclusão
         // Cria um objeto Carro para receber os dados da do preenchimento 
         // da tela
-        Carro al = new Carro();
+        Carro c = new Carro();
         // Cria um objeto CarroDAO para uso dos métodos de acesso
         // ao banco para os Carros
-        CarroDAO ad = new CarroDAO();
+        CarroDAO cd = new CarroDAO();
         // Determina os valores dos atributos do objeto Carro, com os dados
         // preenchidos na tela
         // o id irá ser usado para determinar o registro a ser alterado
-        al.setId(id);
-        al.setMarca(tfMarca.getText().toString());
-        al.setPlaca(tfPlaca.getText());
-        al.setCor(tfCor.getText());
-        // Verifica se a operação de exclusão obteve sucesso
-        if (ad.excluir(al)) {
+        c.setId(id);
+        c.setMarca(tfMarca.getText().toString());
+        c.setPlaca(tfPlaca.getText());
+        c.setCor(tfCor.getText());
+        c.setHoraEntrada(Integer.parseInt( tfHoraEntrada.getText()));
+        c.setHoraSaida(Integer.parseInt( tfHoraSaida.getText()));
+                
+// Verifica se a operação de exclusão obteve sucesso
+        if (cd.excluir(c)) {
           String mensagem = "Carro Excluído!";
           JOptionPane.showMessageDialog(null, mensagem);
         }
@@ -235,6 +291,14 @@ public class TelaDados extends javax.swing.JFrame {
       // TODO add your handling code here:
       this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void tfHoraEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHoraEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfHoraEntradaActionPerformed
+
+    private void tfHoraSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHoraSaidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfHoraSaidaActionPerformed
 
   /**
    * @param args the command line arguments
@@ -282,7 +346,11 @@ public class TelaDados extends javax.swing.JFrame {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;
     private javax.swing.JLabel lb4;
+    private javax.swing.JLabel lb5;
+    private javax.swing.JLabel lb6;
     private javax.swing.JTextField tfCor;
+    private javax.swing.JTextField tfHoraEntrada;
+    private javax.swing.JTextField tfHoraSaida;
     private javax.swing.JTextField tfMarca;
     private javax.swing.JTextField tfPlaca;
     // End of variables declaration//GEN-END:variables

@@ -28,7 +28,7 @@ public class AcessoBD {
       // se o arquivo estiver em outro local, será necessário indicar
       // o caminho antes do nome do arquivo. Caso o arquivo não seja
       // encontrado, será gerada uma exceção.
-      String nomeArquivo = "Carro.accdb";
+      String nomeArquivo = "Carros.accdb";
       // Tenta abrir o arquivo.
       File arquivo = new File(nomeArquivo);
       // Verifica se o arquivo não existe e informa caso o arquivo 

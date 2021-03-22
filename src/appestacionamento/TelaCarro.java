@@ -294,16 +294,18 @@ public class TelaCarro extends javax.swing.JFrame {
             // preencher a lista
             ArrayList<String> ar = new ArrayList();
             // Formata a linha de título do JList
-            String linha = String.format("%3s|%-15s|%10s|%10s", 
-                    "Id", "Placa", "Marca", "Cor");
+            String linha = String.format("%3s|%-15s|%10s|%10s|%10s|%10s", 
+                    "Id", "Placa", "Marca", "Cor", "Hora Entrada", "Hora Saida");
             // Adiciona a linha ao ArrayList
             ar.add(linha);
             // Enquanto houver registros
             while (rs.next()) {
                 // Formata a linha de registros da lista
                 linha = String.format("%3s|%-15s|%10s|%10s", rs.getString("id"),
-                        rs.getString("Placa"), rs.getString("matricula"), 
-                        rs.getString("Cor"));
+                        rs.getString("placa"), rs.getString("matricula"), 
+                        rs.getString("cor"),
+                        rs.getString("horaentrada"),
+                        rs.getString("horasaida"));
                 // Adiciona a linha ao ArrayList
                 ar.add(linha);
             }

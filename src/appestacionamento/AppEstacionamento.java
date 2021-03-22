@@ -16,6 +16,8 @@ public class AppEstacionamento {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        TelaCarro tela = new TelaCarro();
+        tela.setVisible(true);
     }
     
 }

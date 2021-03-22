@@ -43,6 +43,7 @@ public class CarroDAO {
             carro.setPlaca(rs.getString("placa"));
             carro.setCor(rs.getString("cor"));
             carro.setHoraEntrada(Integer.parseInt(rs.getString("horaEntrada")));
+            carro.setHoraSaida(Integer.parseInt(rs.getString("horaSaida")));
           }
         }
       } catch (Exception e) {
@@ -68,9 +69,9 @@ public class CarroDAO {
       // Tramento de exceções
       try {
         // Define a consulta de inclusão na tabela Carros 
-        String consulta = "INSERT into Carros (marca, placa, cor) "
+        String consulta = "INSERT into carros (marca, placa, cor, horaentrada, horasaida) "
                 + "VALUES(" + carro.getMarca() + ",'"
-                + carro.getPlaca() + "','" + carro.getCor() + "')";
+                + carro.getPlaca() + "','" + carro.getCor()+ "','" + carro.getHoraEntrada()+ "','" + carro.getHoraSaida()+ "')";
         // Cria um objeto para realizar a consulta
         Statement st = acesso.con.createStatement();
         // Executa a consulta
@@ -98,9 +99,11 @@ public class CarroDAO {
       // Tramento de exceções
       try {
         // Define a consulta de alteração na tabela Carros 
-        String consulta = "UPDATE Carros SET marca="
+        String consulta = "UPDATE carros SET marca="
                 + carro.getMarca() + ", placa='" + carro.getPlaca()
                 + "', cor='" + carro.getCor()
+                + "', horaentrada='" + carro.getHoraEntrada()
+                + "', horasaida='" + carro.getHoraSaida()
                 + "' WHERE id=" + carro.getId();
         // Cria um objeto para realizar a consulta
         Statement st = acesso.con.createStatement();
@@ -128,7 +131,7 @@ public class CarroDAO {
       // Tramento de exceções
       try {
         // Define a consulta de exclusão na tabela Carros 
-        String consulta = "DELETE from Carros WHERE id=" + carro.getId();
+        String consulta = "DELETE from carros WHERE id=" + carro.getId();
         // Cria um objeto para realizar a consulta
         Statement st = acesso.con.createStatement();
         // Executa a consulta
@@ -168,8 +171,8 @@ public class CarroDAO {
         // Executa a consulta ao Banco e armazena o resultado no ResultSet
         rs = stm.executeQuery();
         // Formata o título do relatório
-        String linha = String.format("%3s|%-15s|%10s|%10s",
-                "Id", "Placa", "Matrícula", "Cor");
+        String linha = String.format("%3s|%-15s|%10s|%10s|%10s|%10s",
+                "Id", "Placa", "Matrícula", "Cor", "Hora entrada", "Hora saída");
         // Exibe o título do relatório
         System.out.println(linha);
         // Enquanto houver registros, o objeto Carro recebe os dados 
@@ -181,9 +184,9 @@ public class CarroDAO {
             carro.setPlaca(rs.getString("placa"));
             carro.setCor(rs.getString("cor"));
             // Formata a linha de conteúdo do relatório
-            linha = String.format("%3s|%-15s|%10s|%10s", rs.getString("id"),
+            linha = String.format("%3s|%-15s|%10s|%10s|%10s|%10s", rs.getString("id"),
                     rs.getString("placa"), rs.getString("marca"),
-                    rs.getString("cor"));
+                    rs.getString("cor"), rs.getString("horaentrada"),rs.getString("horasaida"));
             // Exibe cada registro
             System.out.println(linha);
           }
